@@ -120,3 +120,29 @@ GO
 
 EXEC SP_SEL_PUBLIC_NHANVIEN 'NVA', 'abcd12'
 GO
+---------------------------------------------------------------------
+CREATE OR ALTER TRIGGER SP_UPDATE_POINTS ON BANGDIEM
+FOR UPDATE AS
+BEGIN
+    DECLARE @MANV VARCHAR(20)
+    DECLARE @PublicKey VARBINARY(MAX)
+
+    -- Lấy MANV từ bảng NHANVIEN với dữ liệu được cập nhật
+    SELECT @MANV = MANV FROM NHANVIEN WHERE MANV IN (SELECT MANV FROM inserted)
+
+    -- Lấy public key tương ứng với MANV
+    SELECT @PublicKey = CAST(PUBKEY AS VARBINARY(MAX)) FROM NHANVIEN WHERE MANV = @MANV
+
+    -- Kiểm tra xem khóa đã tồn tại trong cơ sở dữ liệu chưa, nếu không thì tạo mới
+    IF (AsymKey_ID(@MANV) IS NULL) BEGIN
+        DECLARE @CreateASymKey NVARCHAR(MAX)
+        SET @CreateASymKey = 'CREATE ASYMMETRIC KEY ' + QuoteName(@MANV) + ' WITH ALGORITHM = RSA_2048 ENCRYPTION BY PASSWORD = '''''
+        EXEC sp_executesql @CreateASymKey
+    END
+
+    -- Mã hóa điểm thi bằng RSA với public key
+    UPDATE BANGDIEM
+    SET DIEMTHI = EncryptByASymKey(AsymKey_ID(@MANV), i.DIEMTHI)
+    FROM BANGDIEM
+    JOIN inserted i ON BANGDIEM.MASV = i.MASV
+END
