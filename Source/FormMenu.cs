@@ -23,7 +23,7 @@ namespace Source
         }
         private void btnLopHoc_Click(object sender, EventArgs e)
         {
-            Form formClass = new FormClass();
+            Form formClass = new FormClass(txtMaNV.Text);
             formClass.ShowDialog();
         }
 
