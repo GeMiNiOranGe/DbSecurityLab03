@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Source {
-    class Config {
-        public readonly string CONNECTION_STRING = @"";
+    static class Config {
+        public static readonly string CONNECTION_STRING = @"";
     }
 }
