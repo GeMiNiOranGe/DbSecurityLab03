@@ -13,7 +13,6 @@ namespace Source
 {
     public partial class FormInputPoints : Form
     {
-            string CONNECTION_STRING = @"Data Source=LAPTOP-3MHE919R\SQLSERVER22;Initial Catalog=QLSVNhom;Integrated Security=True";
             public FormInputPoints()
             {
                 InitializeComponent();
@@ -28,7 +27,7 @@ namespace Source
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+                    using (SqlConnection connection = new SqlConnection(Config.CONNECTION_STRING))
                     {
                         connection.Open();
                         string query = "select MASV,MAHP from BANGDIEM";
@@ -62,7 +61,7 @@ namespace Source
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+                using (SqlConnection connection = new SqlConnection(Config.CONNECTION_STRING))
                 {
                     connection.Open();
 

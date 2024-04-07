@@ -11,7 +11,6 @@ using System.Windows.Forms;
 
 namespace Source {
     public partial class FormLogin : Form {
-        string connectionString = @"Data Source=ADMIN;Initial Catalog=QLSVNhom;Integrated Security=True";
         SqlConnection sqlConnection;
         SqlCommand sqlCommand;
         public FormLogin() {
@@ -25,7 +24,7 @@ namespace Source {
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            sqlConnection = new SqlConnection(connectionString);
+            sqlConnection = new SqlConnection(Config.CONNECTION_STRING);
             try
             {
                 sqlCommand = new SqlCommand();

@@ -48,12 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="FormClassDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormClassDetail.Designer.cs">
-      <DependentUpon>FormClassDetail.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormInputPoints.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,9 +74,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormClassDetail.resx">
-      <DependentUpon>FormClassDetail.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormInputPoints.resx">
       <DependentUpon>FormInputPoints.cs</DependentUpon>
     </EmbeddedResource>

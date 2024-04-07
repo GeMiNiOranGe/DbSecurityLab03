@@ -14,8 +14,6 @@ namespace Source
 {
     public partial class FormClass : Form
     {
-        //string manv = "";
-        string connectionString = @"Data Source=ADMIN;Initial Catalog=QLSVNhom;Integrated Security=True";
         SqlConnection sqlConnection;
         SqlCommand sqlCommand;
         SqlDataAdapter adapter;
